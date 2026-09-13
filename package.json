@@ -1,0 +1,28 @@
+{
+  "name": "forge-look-mvc",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Landing page de Forge_Look con arquitectura MVC en JavaScript vanilla.",
+  "scripts": {
+    "dev": "npx --yes serve . --listen 3001",
+    "start": "npx --yes serve . --listen 3001",
+    "build:styles": "tailwindcss --input src/styles/tailwind.input.css --output src/styles/tailwind.css --minify",
+    "build:assets": "node ./scripts/copy-local-assets.mjs",
+    "build:assets:windows": "powershell -ExecutionPolicy Bypass -File ./scripts/copy-local-assets.ps1",
+    "build": "npm run build:assets && npm run build:styles",
+    "build:dist": "npm run build && node ./scripts/create-dist.mjs",
+    "build:dist:windows": "npm run build && powershell -ExecutionPolicy Bypass -File ./scripts/create-dist.ps1",
+    "deploy:supabase": "node ./scripts/deploy-to-supabase-storage.mjs",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "@fontsource/inter": "^5.1.1",
+    "@fortawesome/fontawesome-free": "^6.7.2",
+    "jsdom": "^26.0.0",
+    "tailwindcss": "^3.4.17"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.4"
+  }
+}

@@ -1,0 +1,13 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Abrir en Edge",
+            "type": "pwa-msedge",
+            "request": "launch",
+            "url": "http://localhost:3001/forge_look_landing_page.html",
+            "webRoot": "${workspaceFolder}",
+            "userDataDir": "${workspaceFolder}/.vscode/edge-debug-profile"
+        }
+    ]
+}

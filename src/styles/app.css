@@ -1,0 +1,8 @@
+/* Estilos que complementan las utilidades cargadas desde Tailwind CDN. */
+.solution-card-transition { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* Personalización visual de la barra de desplazamiento en navegadores WebKit. */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: #0f172a; }
+::-webkit-scrollbar-thumb { background: #334155; border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: #22c55e; }

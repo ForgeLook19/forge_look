@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Forge_Look: soluciones tecnológicas para negocios.">
+    <title>Forge_Look | Soluciones tecnológicas para negocios</title>
+
+    <!-- Recursos compilados y servidos localmente: no requieren CDN en producción. -->
+    <link rel="stylesheet" href="./src/styles/tailwind.css">
+    <link rel="stylesheet" href="./src/vendor/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="./src/vendor/inter/inter.css">
+    <link rel="stylesheet" href="./src/styles/app.css">
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans antialiased selection:bg-brand-500 selection:text-slate-950">
+    <!-- La Vista inserta cada componente en estos contenedores. -->
+    <div id="app" class="min-h-screen flex flex-col">
+        <header id="header-container" class="sticky top-0 z-50 backdrop-blur-md bg-slate-950/80 border-b border-slate-800/80"></header>
+        <main class="flex-grow">
+            <section id="hero-container"></section>
+            <section id="solutions-carousel-container" class="py-20 bg-slate-900/40"></section>
+            <section id="need-finder-container" class="py-20 bg-gradient-to-b from-slate-950 to-slate-900 border-y border-slate-800/60"></section>
+            <section id="services-container" class="py-20 bg-slate-950"></section>
+            <section id="workflow-container" class="py-20 bg-slate-900/50"></section>
+            <section id="help-banner-container" class="py-16 bg-slate-950"></section>
+            <section id="cta-container" class="py-20 bg-slate-950"></section>
+        </main>
+        <footer id="footer-container" class="bg-slate-950 border-t border-slate-800/80 text-slate-400 py-12"></footer>
+        <div id="toast-container" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none" aria-live="polite"></div>
+    </div>
+
+    <!-- Punto de entrada: el controlador inicia la aplicación MVC. -->
+    <script type="module" src="./src/controllers/app-controller.js"></script>
+</body>
+</html>

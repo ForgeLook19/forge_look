@@ -1,0 +1,34 @@
+name: Build y despliegue a Supabase Storage
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch: {}
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Ejecutar tests
+        run: npm test
+
+      - name: Compilar (assets + estilos + dist/)
+        run: npm run build:dist
+
+      - name: Desplegar dist/ a Supabase Storage
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          SUPABASE_BUCKET: ${{ secrets.SUPABASE_BUCKET }}
+        run: npm run deploy:supabase
