@@ -1,7 +1,9 @@
 node_modules/
 dist/
 .env
-.env.local
+.env.*
+!.env.example
 src/config/supabase-config.js
+.vscode/edge-debug-profile/
 *.log
 .DS_Store

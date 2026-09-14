@@ -1,6 +1,11 @@
 import { AppModel } from '../models/app-model.js';
 import { AppView } from '../views/app-view.js';
 
+// La integración con Supabase queda desactivada por defecto para mantener el
+// flujo comercial actual de WhatsApp y evitar que un lead se guarde sin una
+// decisión explícita del propietario del proyecto.
+const ENABLE_SUPABASE_LEADS = false;
+
 /**
  * CONTROLADOR: conecta los eventos de la interfaz con el Modelo y pide a la Vista
  * volver a pintar únicamente los componentes que cambiaron.
@@ -42,7 +47,12 @@ export const AppController = {
                 AppModel.state.activeBannerIndex = Number(bannerButton.dataset.banner);
                 AppView.renderSolutions();
             }
-            if (event.target.closest('#send-idea-btn')) this.sendIdeaToWhatsApp();
+            if (event.target.closest('#send-idea-btn')) {
+                if (ENABLE_SUPABASE_LEADS && window.__FORGE_LOOK_ENABLE_SUPABASE_LEADS === true) {
+                    this.sendIdeaToSupabase();
+                }
+                this.sendIdeaToWhatsApp();
+            }
         });
 
         // Conserva el borrador en el Modelo incluso si otra acción vuelve a pintar la vista.
@@ -51,6 +61,23 @@ export const AppController = {
                 AppModel.state.userNeedInput = event.target.value;
             }
         });
+    },
+
+    async sendIdeaToSupabase() {
+        // La integración con Supabase queda deshabilitada por defecto para no
+        // guardar leads ni enviar datos desde el navegador sin consentimiento claro.
+        if (!ENABLE_SUPABASE_LEADS || window.__FORGE_LOOK_ENABLE_SUPABASE_LEADS !== true) {
+            return;
+        }
+
+        const input = document.querySelector('#user-need-input');
+        const idea = input?.value.trim() || 'Tengo una idea o necesidad para mi negocio.';
+        try {
+            const { saveLead } = await import('../services/supabase-client.js');
+            await saveLead({ idea, whatsappNumber: AppModel.state.whatsappNumber });
+        } catch (error) {
+            console.error('No se pudo guardar la idea en Supabase:', error);
+        }
     },
 
     sendIdeaToWhatsApp() {

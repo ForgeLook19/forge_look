@@ -1,9 +1,10 @@
 /**
  * SERVICIO (futuro): cliente de Supabase para el navegador.
  *
- * Todavía NO se usa desde el controlador ni la vista — es la base para cuando
- * se active el backend real (guardar los leads del formulario en la tabla
- * "leads", ver supabase/migrations/0001_create_leads_table.sql).
+ * Todavía NO se usa desde el controlador ni la vista. La landing mantiene su
+ * flujo comercial actual: abrir WhatsApp sin guardar datos. Si se activa el
+ * guardado de leads, debe generarse una configuración pública durante el build
+ * y aplicar también 0002_harden_leads_policy.sql.
  *
  * Requiere:
  *   1. Copiar src/config/supabase-config.example.js -> src/config/supabase-config.js
@@ -13,7 +14,10 @@
  *        import { createClient } from 'https://esm.sh/@supabase/supabase-js@2';
  *        window.__supabaseCreateClient = createClient;
  *      </script>
- *      (o instalarlo como dependencia si se agrega un bundler más adelante).
+ *      (o distribuir un SDK local compatible sin añadir un bundler).
+ *
+ * Nunca incluyas SUPABASE_SERVICE_ROLE_KEY en este módulo, su configuración,
+ * HTML ni dist/. Esa clave pertenece exclusivamente a scripts Node o CI.
  */
 import { SUPABASE_CONFIG } from '../config/supabase-config.js';
 

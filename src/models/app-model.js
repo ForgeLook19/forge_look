@@ -5,7 +5,7 @@
 export const AppModel = {
     // Estado que cambia como resultado de las acciones del usuario.
     state: {
-        whatsappNumber: '573004259624',
+        whatsappNumber: '573043402589',
         activeBannerIndex: 0,
         userNeedInput: '',
         isMenuOpen: false

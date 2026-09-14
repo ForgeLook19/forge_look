@@ -5,9 +5,11 @@
 
 create table if not exists public.leads (
     id uuid primary key default gen_random_uuid(),
-    idea text not null,
+    idea text not null constraint leads_idea_length_check
+        check (char_length(btrim(idea)) between 1 and 2000),
     whatsapp_number text,
-    source text default 'landing_need_finder',
+    source text not null default 'landing_need_finder' constraint leads_source_check
+        check (source = 'landing_need_finder'),
     created_at timestamptz not null default now()
 );
 
@@ -19,7 +21,10 @@ create policy "Cualquiera puede crear un lead"
     on public.leads
     for insert
     to anon
-    with check (true);
+    with check (
+        source = 'landing_need_finder'
+        and char_length(btrim(idea)) between 1 and 2000
+    );
 
 -- La lectura queda reservada al panel de Supabase / service role key,
 -- no se expone al público.
