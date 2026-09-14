@@ -1,105 +1,88 @@
-# Forge_Look MVC
+# Forge_Look
 
-Landing page estática organizada con el patrón MVC usando JavaScript vanilla.
+Landing estática de servicios tecnológicos para emprendedores, negocios y pequeñas empresas.
 
-## Estructura
+## Descripción
 
-- `index.html`: acceso de compatibilidad que redirige a la landing.
-- `forge_look_landing_page.html`: punto de entrada y contenedores de la interfaz.
-- `src/models/app-model.js`: estado y datos de negocio.
-- `src/views/app-view.js`: renderizado HTML; no registra eventos ni modifica el estado.
-- `src/controllers/app-controller.js`: eventos y acciones del usuario; coordina Modelo y Vista.
-- `src/styles/app.css`: estilos CSS propios.
+Forge_Look presenta soluciones de automatización, desarrollo web, sistemas y digitalización de procesos. La app mantiene una arquitectura MVC simple en JavaScript vanilla y se despliega como sitio estático.
 
-## Flujo MVC
+## Tecnologías
 
-1. El controlador inicia la página y solicita a la vista renderizar sus secciones.
-2. La vista lee los datos del modelo y construye el HTML de cada contenedor.
-3. Las interacciones (menú, carrusel y formulario) actualizan el modelo mediante el controlador y se vuelve a renderizar solo la parte necesaria.
+- HTML, CSS y JavaScript vanilla
+- Tailwind CSS
+- Node.js y npm para desarrollo, build y pruebas
+- Supabase para almacenamiento y, opcionalmente, registro de leads
+- Arquitectura MVC frontend sin backend permanente
 
-## Comprobaciones realizadas
+## Requisitos
 
-- Ejecuta `npm test` para validar el renderizado MVC, el selector de soluciones y la conservación segura del borrador.
-- Ejecuta `npm run build` después de instalar dependencias. Genera el CSS de Tailwind y copia Font Awesome e Inter como recursos locales.
-- Tras compilar, Tailwind, Font Awesome y la tipografía Inter funcionan sin conexión. WhatsApp seguirá necesitando conectividad y un número válido, porque abre un servicio externo.
+- Node.js `>=20 <25`
+- npm
 
-## Desarrollo
+## Instalación
 
-Requiere Node.js. Ejecuta:
+```bash
+npm ci
+```
+
+## Variables de entorno
+
+Usa `SUPABASE_URL` para la URL pública del proyecto Supabase; usa `SUPABASE_BUCKET` para el bucket de almacenamiento y guarda la clave de despliegue en GitHub Actions Secrets o en un entorno seguro de Node/CI.
+
+Nunca publiques:
+
+- `.env`
+- `.env.*`
+- `src/config/supabase-config.js`
+- claves privadas, passwords o tokens
+
+## Desarrollo local
 
 ```bash
 npm run dev
 ```
 
-Después abre `http://localhost:3001/forge_look_landing_page.html`.
+Abre la aplicación en:
 
-No abras `forge_look_landing_page.html` directamente con doble clic (`file:///...`):
-la aplicación usa módulos de JavaScript y el navegador los bloquea fuera de un
-servidor HTTP.
-
-## Despliegue estático
-
-Ejecuta `npm run build:dist`. La carpeta `dist/` contiene únicamente `index.html`,
-`forge_look_landing_page.html` y `src/` con los recursos ya compilados. Sube el
-contenido de esa carpeta a Supabase Storage y sírvelo mediante HTTP(S); no abras
-el HTML directamente con el protocolo `file://`, porque los módulos ES requieren
-un servidor web.
-
-Los scripts `build:assets` y `build:dist` ahora son multiplataforma (Node.js,
-`scripts/*.mjs`) para poder compilar tanto en Windows como en Linux/macOS y en
-GitHub Actions. Las versiones antiguas en PowerShell siguen disponibles como
-`build:assets:windows` y `build:dist:windows` por si las prefieres en Windows.
-
-## Publicar en GitHub
-
-```bash
-git init
-git add .
-git commit -m "Primer commit: landing Forge_Look"
-git branch -M main
-git remote add origin https://github.com/TU-USUARIO/TU-REPOSITORIO.git
-git push -u origin main
+```text
+http://localhost:3001/forge_look_landing_page.html
 ```
 
-Crea antes el repositorio vacío en GitHub (sin README ni .gitignore, para
-evitar conflictos) y reemplaza la URL del `remote` por la tuya.
+No abras la app directamente con `file:///` porque los módulos ES requieren un servidor HTTP.
 
-## Subir a Supabase
+## Build
 
-### 1. Hosting del sitio estático (Supabase Storage) — listo ahora
+```bash
+npm run build
+npm run build:dist
+```
 
-1. Crea un proyecto en [supabase.com](https://supabase.com).
-2. En **Project Settings → API** copia la `URL` del proyecto y la
-   `service_role key` (secreta, nunca la publiques).
-3. Localmente, exporta esas variables y sube `dist/`:
-   ```bash
-   npm run build:dist
-   SUPABASE_URL=https://tu-proyecto.supabase.co \
-   SUPABASE_SERVICE_ROLE_KEY=tu-service-role-key \
-   SUPABASE_BUCKET=forge-look-site \
-   npm run deploy:supabase
-   ```
-   El script crea el bucket (público) si no existe y sube todos los
-   archivos de `dist/` conservando la estructura de carpetas.
-4. **Despliegue automático:** en GitHub, ve a `Settings → Secrets and
-   variables → Actions` y crea los secrets `SUPABASE_URL`,
-   `SUPABASE_SERVICE_ROLE_KEY` y `SUPABASE_BUCKET`. Cada `git push` a
-   `main` compilará y desplegará solo con el workflow
-   `.github/workflows/deploy-supabase.yml`.
+`build` compila estilos y copia assets locales; `build:dist` genera la carpeta `dist/` lista para hosting estático.
 
-### 2. Backend real (próxima actualización) — ya preparado, aún no conectado
+## Tests
 
-Para cuando quieras guardar en una base de datos las ideas que la gente
-escribe en el formulario "¿Tienes una idea...?":
+```bash
+npm test
+```
 
-- `supabase/migrations/0001_create_leads_table.sql` crea la tabla `leads`
-  con Row Level Security (solo permite `insert` público, no lectura).
-  Aplícala desde el SQL Editor de Supabase o con la Supabase CLI
-  (`supabase db push`).
-- `src/config/supabase-config.example.js` → cópialo como
-  `supabase-config.js` (ya está en `.gitignore`) con tu `url` y `anonKey`
-  públicas.
-- `src/services/supabase-client.js` ya tiene la función `saveLead()`
-  lista para usar; solo falta llamarla desde
-  `src/controllers/app-controller.js` en `sendIdeaToWhatsApp()` cuando
-  decidas activar esta funcionalidad.
+La suite valida el render de la landing y la persistencia del borrador del formulario sin romper la estructura MVC.
+
+## Supabase
+
+La base ya incluye la tabla `public.leads` y políticas mínimas con Row Level Security. Por defecto, la landing sigue abriendo WhatsApp y no guarda leads desde el navegador. Si se activa la escritura del formulario desde el frontend, solo se usará la URL pública y la anon key con RLS correctamente configurado, nunca una clave privada.
+
+## Deployment
+
+Este proyecto está pensado para publicar el contenido generado en `dist/` en un hosting estático. El despliegue puede hacerse desde GitHub Actions o desde un entorno seguro que ejecute:
+
+```bash
+npm run build:dist
+npm run deploy:supabase
+```
+
+## Seguridad
+
+- La clave privada no se usa en el navegador.
+- La configuración pública queda separada del entorno de despliegue seguro.
+- El sitio no debe publicar secretos ni credenciales reales en HTML, CSS, JS ni `dist/`.
+- Si se decide guardar leads desde la landing, la activación debe hacerse de forma explícita y validada.
