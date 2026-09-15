@@ -1,10 +1,10 @@
-# Forge_Look
+# ForgeLock
 
 Landing estática de servicios tecnológicos para emprendedores, negocios y pequeñas empresas.
 
 ## Descripción
 
-Forge_Look presenta soluciones de automatización, desarrollo web, sistemas y digitalización de procesos. La app mantiene una arquitectura MVC simple en JavaScript vanilla y se despliega como sitio estático.
+ForgeLock presenta soluciones de automatización, desarrollo web, sistemas y digitalización de procesos. La app mantiene una arquitectura MVC simple en JavaScript vanilla y se despliega como sitio estático.
 
 ## Tecnologías
 

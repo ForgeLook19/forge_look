@@ -1,13 +1,17 @@
 {
+    // Use IntelliSense para saber los atributos posibles.
+    // Mantenga el puntero para ver las descripciones de los existentes atributos.
+    // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
+
         {
-            "name": "Abrir en Edge",
-            "type": "pwa-msedge",
+            "type": "editor-browser",
             "request": "launch",
-            "url": "http://localhost:3001/forge_look_landing_page.html",
-            "webRoot": "${workspaceFolder}",
-            "userDataDir": "${workspaceFolder}/.vscode/edge-debug-profile"
+            "name": "Iniciar el explorador integrado en localhost",
+            "url": "http://localhost:3001",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }

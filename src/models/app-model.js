@@ -18,6 +18,12 @@ export const AppModel = {
         { name: 'Servicios', href: '#servicios' },
         { name: 'Contacto', href: '#contacto' }
     ],
+    socialLinks: [
+        { name: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61594009876448', icon: 'fa-brands fa-facebook-f' },
+        { name: 'Instagram', href: 'https://www.instagram.com/forgelock', icon: 'fa-brands fa-instagram' },
+        { name: 'X', href: 'https://x.com/forgelock', icon: 'fa-brands fa-x-twitter' },
+        { name: 'TikTok', href: 'https://www.tiktok.com/@forgelock', icon: 'fa-brands fa-tiktok' }
+    ],
     featuredSolutions: [
         { id: 'whatsapp', title: 'Automatiza tu WhatsApp Business', tag: 'Solución Estelar', icon: 'fa-brands fa-whatsapp', tone: 'emerald', description: 'Convierte WhatsApp en una herramienta para atender clientes, registrar información y automatizar procesos sin perder el toque humano.', highlights: ['Atención 24/7 automática', 'Registro automático de clientes', 'Filtros y derivación de solicitudes'], whatsappText: 'Hola, estoy interesado en automatizar WhatsApp Business.' },
         { id: 'web', title: 'Crea una presencia web profesional', tag: 'Imagen Digital', icon: 'fa-solid fa-globe', tone: 'blue', description: 'Diseñamos páginas web adaptadas a tu negocio para ayudarte a tener una presencia digital profesional que genere confianza y ventas.', highlights: ['Diseño adaptable a celulares', 'Optimizado para Google', 'Enfoque en captar clientes'], whatsappText: 'Hola, estoy interesado en crear una página web para mi negocio.' },

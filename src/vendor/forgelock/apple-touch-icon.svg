@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 64 64" role="img" aria-label="ForgeLock">
+  <rect width="64" height="64" rx="14" fill="#0f172a"/>
+  <path fill="#22c55e" d="M16 22h32v8H16zm0 12h32v8H16z"/>
+  <path fill="#22c55e" d="M22 16h8v32h-8zm12 0h8v32h-8z" opacity=".45"/>
+  <path fill="#fff" d="M25 31h14a4 4 0 0 1 4 4v11H21V35a4 4 0 0 1 4-4m3-3a4 4 0 0 1 8 0v3h-3v-3a1 1 0 0 0-2 0v3h-3z"/>
+</svg>

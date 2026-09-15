@@ -48,7 +48,7 @@ export const AppController = {
                 AppView.renderSolutions();
             }
             if (event.target.closest('#send-idea-btn')) {
-                if (ENABLE_SUPABASE_LEADS && window.__FORGE_LOOK_ENABLE_SUPABASE_LEADS === true) {
+                if (ENABLE_SUPABASE_LEADS && window.__FORGELOCK_ENABLE_SUPABASE_LEADS === true) {
                     this.sendIdeaToSupabase();
                 }
                 this.sendIdeaToWhatsApp();
@@ -66,7 +66,7 @@ export const AppController = {
     async sendIdeaToSupabase() {
         // La integración con Supabase queda deshabilitada por defecto para no
         // guardar leads ni enviar datos desde el navegador sin consentimiento claro.
-        if (!ENABLE_SUPABASE_LEADS || window.__FORGE_LOOK_ENABLE_SUPABASE_LEADS !== true) {
+        if (!ENABLE_SUPABASE_LEADS || window.__FORGELOCK_ENABLE_SUPABASE_LEADS !== true) {
             return;
         }
 
@@ -85,7 +85,7 @@ export const AppController = {
         const input = document.querySelector('#user-need-input');
         const idea = input?.value.trim() || 'Tengo una idea o necesidad para mi negocio.';
         AppModel.state.userNeedInput = idea;
-        const message = `Hola, soy cliente de Forge_Look. Tengo esta necesidad:\n\n"${idea}"\n\nMe gustaría saber qué solución podrían ofrecerme.`;
+        const message = `Hola, soy cliente de ForgeLock. Tengo esta necesidad:\n\n"${idea}"\n\nMe gustaría saber qué solución podrían ofrecerme.`;
         window.open(`https://wa.me/${AppModel.state.whatsappNumber}?text=${encodeURIComponent(message)}`, '_blank');
     }
 };

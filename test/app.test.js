@@ -39,3 +39,36 @@ test('el controlador cambia la solución activa y conserva el borrador', () => {
 test('los selectores de solución usan la transición declarada', () => {
     assert.ok(document.querySelector('[data-banner]').classList.contains('solution-card-transition'));
 });
+
+test('renderiza correo y redes sociales sin el enlace de marca en contacto', () => {
+    const emailLinks = [...document.querySelectorAll('a[href^="mailto:"]')];
+    assert.ok(emailLinks.some((link) => link.getAttribute('href') === 'mailto:forge.look19@gmail.com'));
+
+    const facebookLinks = [...document.querySelectorAll('a[href="https://www.facebook.com/profile.php?id=61594009876448"]')];
+    assert.equal(facebookLinks.length, 1);
+    facebookLinks.forEach((link) => {
+        assert.equal(link.target, '_blank');
+        assert.equal(link.rel, 'noopener noreferrer');
+        assert.equal(link.getAttribute('aria-label'), 'Facebook');
+    });
+
+    assert.equal(document.querySelectorAll('#cta-container a[aria-label]').length, 0);
+    assert.equal(document.querySelector('#cta-container').textContent.includes('Síguenos en:'), false);
+
+    const footer = document.querySelector('#footer-container');
+    assert.equal(footer.querySelector('img[alt="Logo de ForgeLock"]'), null);
+    assert.equal(footer.querySelector('a[aria-label="Ir al inicio de ForgeLock"]'), null);
+    assert.equal(footer.textContent.includes('Síguenos en'), true);
+    assert.equal(footer.querySelectorAll('a[aria-label="Facebook"], a[aria-label="Instagram"], a[aria-label="X"], a[aria-label="TikTok"]').length, 4);
+    footer.querySelectorAll('a[aria-label="Facebook"], a[aria-label="Instagram"], a[aria-label="X"], a[aria-label="TikTok"]').forEach((link) => {
+        assert.equal(link.target, '_blank');
+        assert.equal(link.rel, 'noopener noreferrer');
+    });
+    assert.equal(footer.querySelector('a[aria-label="Facebook"]').getAttribute('href'), 'https://www.facebook.com/profile.php?id=61594009876448');
+    assert.equal(footer.querySelector('a[aria-label="Instagram"]').getAttribute('href'), 'https://www.instagram.com/forgelock');
+    assert.equal(footer.querySelector('a[aria-label="X"]').getAttribute('href'), 'https://x.com/forgelock');
+    assert.equal(footer.querySelector('a[aria-label="TikTok"]').getAttribute('href'), 'https://www.tiktok.com/@forgelock');
+    assert.ok(footer.querySelector('a[href^="https://wa.me/573043402589"]'));
+    assert.equal(footer.querySelector('a[aria-label="Contactar a ForgeLock por WhatsApp"]').target, '_blank');
+    assert.equal(footer.querySelector('a[aria-label="Enviar correo a ForgeLock"]').getAttribute('href').startsWith('mailto:forge.look19@gmail.com'), true);
+});
