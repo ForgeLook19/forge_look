@@ -1,4 +1,4 @@
-// Genera un paquete estático autocontenido, apto para subir a Supabase Storage.
+// Genera un paquete estático autocontenido, apto para GitHub Pages y Supabase Storage.
 // Versión multiplataforma (Node.js) del antiguo create-dist.ps1.
 import { existsSync } from 'node:fs';
 import { cp, mkdir, rm } from 'node:fs/promises';
@@ -16,6 +16,8 @@ await mkdir(output, { recursive: true });
 
 await cp(join(root, 'index.html'), join(output, 'index.html'));
 await cp(join(root, 'forge_look_landing_page.html'), join(output, 'forge_look_landing_page.html'));
+await cp(join(root, 'robots.txt'), join(output, 'robots.txt'));
+await cp(join(root, 'sitemap.xml'), join(output, 'sitemap.xml'));
 
 // Copia solo los módulos y recursos que utiliza el navegador; no se filtran
 // herramientas de desarrollo ni el archivo fuente de compilación de Tailwind.
@@ -23,7 +25,7 @@ const sourceRoot = join(root, 'src');
 const outputSource = join(output, 'src');
 await mkdir(outputSource, { recursive: true });
 
-for (const folder of ['controllers', 'models', 'views', 'vendor']) {
+for (const folder of ['controllers', 'models', 'services', 'views', 'vendor']) {
     await cp(join(sourceRoot, folder), join(outputSource, folder), { recursive: true });
 }
 
@@ -33,4 +35,4 @@ for (const file of ['app.css', 'tailwind.css']) {
     await cp(join(sourceRoot, 'styles', file), join(outputStyles, file));
 }
 
-console.log('dist/ generado correctamente (listo para Supabase Storage).');
+console.log('dist/ generado correctamente.');
