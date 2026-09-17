@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^powershell -NoProfile -Command \"\\$css = Get-Content 'src/styles/tailwind\\.css' -Raw; 'grid-cols-1=' \\+ \\$css\\.Contains\\('\\.grid-cols-1'\\); 'grid-cols-12=' \\+ \\$css\\.Contains\\('\\.grid-cols-12'\\); 'lg-grid-cols-12=' \\+ \\$css\\.Contains\\('\\.lg\\\\\\\\:grid-cols-12'\\); 'lg-col-span-6=' \\+ \\$css\\.Contains\\('\\.lg\\\\\\\\:col-span-6'\\)\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
