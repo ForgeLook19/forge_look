@@ -12,9 +12,11 @@ const dom = new JSDOM(`<!doctype html><body>
 
 globalThis.window = dom.window;
 globalThis.document = dom.window.document;
+
 const { AppModel } = await import('../src/models/app-model.js');
 const { AppView } = await import('../src/views/app-view.js');
 const { AppController } = await import('../src/controllers/app-controller.js');
+const { AIService } = await import('../src/services/ai-service.js');
 
 test('renderiza las secciones principales de la landing', () => {
     AppController.init();
@@ -28,12 +30,25 @@ test('el controlador cambia la solución activa y conserva el borrador', () => {
     assert.equal(AppModel.state.activeBannerIndex, 2);
     assert.match(document.querySelector('#solutions-carousel-container').textContent, /sistema hecho para tu negocio/i);
 
-    const input = document.querySelector('#user-need-input');
+    const input = document.querySelector('#idea-textarea');
     input.value = '<b>Necesito automatizar</b>';
     input.dispatchEvent(new window.Event('input', { bubbles: true }));
     AppView.renderNeedFinder();
-    assert.equal(document.querySelector('#user-need-input').value, '<b>Necesito automatizar</b>');
-    assert.equal(document.querySelector('#user-need-input b'), null);
+    AppController.init();
+    assert.equal(document.querySelector('#idea-textarea').value, '<b>Necesito automatizar</b>');
+    assert.equal(document.querySelector('#idea-textarea b'), null);
+});
+
+test('genera una propuesta local y un enlace de WhatsApp codificado', () => {
+    const idea = 'Necesito una página para mi barbería llamada Barber King, con servicios, precios, ubicación, fotos, WhatsApp y colores negro y dorado.';
+    const proposal = AIService.heuristicAnalysis(idea);
+    const whatsappLink = AIService.getWhatsAppLink(idea, proposal, AppModel.state.whatsappNumber);
+
+    assert.equal(proposal.businessName, 'Barber King');
+    assert.match(proposal.sector, /Barbería/i);
+    assert.match(decodeURIComponent(whatsappLink), /Barber King/);
+    assert.match(whatsappLink, /^https:\/\/wa\.me\/573043402589\?text=/);
+    assert.match(whatsappLink, /%0A/);
 });
 
 test('los selectores de solución usan la transición declarada', () => {
@@ -65,9 +80,9 @@ test('renderiza correo y redes sociales sin el enlace de marca en contacto', () 
         assert.equal(link.rel, 'noopener noreferrer');
     });
     assert.equal(footer.querySelector('a[aria-label="Facebook"]').getAttribute('href'), 'https://www.facebook.com/profile.php?id=61594009876448');
-    assert.equal(footer.querySelector('a[aria-label="Instagram"]').getAttribute('href'), 'https://www.instagram.com/forgelock');
+    assert.equal(footer.querySelector('a[aria-label="Instagram"]').getAttribute('href'), 'https://www.instagram.com/forgelook/');
     assert.equal(footer.querySelector('a[aria-label="X"]').getAttribute('href'), 'https://x.com/forgelock');
-    assert.equal(footer.querySelector('a[aria-label="TikTok"]').getAttribute('href'), 'https://www.tiktok.com/@forgelock');
+    assert.equal(footer.querySelector('a[aria-label="TikTok"]').getAttribute('href'), 'https://www.tiktok.com/@forge.lock');
     assert.ok(footer.querySelector('a[href^="https://wa.me/573043402589"]'));
     assert.equal(footer.querySelector('a[aria-label="Contactar a ForgeLock por WhatsApp"]').target, '_blank');
     assert.equal(footer.querySelector('a[aria-label="Enviar correo a ForgeLock"]').getAttribute('href').startsWith('mailto:forge.look19@gmail.com'), true);
