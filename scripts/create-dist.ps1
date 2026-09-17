@@ -1,4 +1,4 @@
-# Genera un paquete estático autocontenido, apto para Supabase Storage.
+# Genera un paquete estático autocontenido, apto para GitHub Pages y Supabase Storage.
 $root = [System.IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..'))
 $output = [System.IO.Path]::GetFullPath((Join-Path $root 'dist'))
 
@@ -15,13 +15,15 @@ if (Test-Path -LiteralPath $output) {
 New-Item -ItemType Directory -Path $output | Out-Null
 Copy-Item -LiteralPath (Join-Path $root 'index.html') -Destination $output
 Copy-Item -LiteralPath (Join-Path $root 'forge_look_landing_page.html') -Destination $output
+Copy-Item -LiteralPath (Join-Path $root 'robots.txt') -Destination $output
+Copy-Item -LiteralPath (Join-Path $root 'sitemap.xml') -Destination $output
 
 # Copia solo los módulos y recursos que utiliza el navegador; no se filtran
 # herramientas de desarrollo ni el archivo fuente de compilación de Tailwind.
 $sourceRoot = Join-Path $root 'src'
 $outputSource = Join-Path $output 'src'
 New-Item -ItemType Directory -Path $outputSource | Out-Null
-@('controllers', 'models', 'views', 'vendor') | ForEach-Object {
+@('controllers', 'models', 'services', 'views', 'vendor') | ForEach-Object {
     Copy-Item -LiteralPath (Join-Path $sourceRoot $_) -Destination $outputSource -Recurse
 }
 $outputStyles = Join-Path $outputSource 'styles'
