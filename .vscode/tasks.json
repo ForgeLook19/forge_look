@@ -1,0 +1,26 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Iniciar servidor Forge Look",
+            "type": "npm",
+            "script": "dev",
+            "isBackground": true,
+            "options": {
+                "cwd": "${workspaceFolder}/forge_look_landing_page"
+            },
+            "problemMatcher": {
+                "owner": "forge-look",
+                "pattern": {
+                    "regexp": "^\\s*(error|Error|ERROR)\\b(.*)$",
+                    "message": 0
+                },
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "Serving!|Accepting connections",
+                    "endsPattern": "http://localhost:3001"
+                }
+            }
+        }
+    ]
+}
