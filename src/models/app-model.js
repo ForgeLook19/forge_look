@@ -20,9 +20,9 @@ export const AppModel = {
     ],
     socialLinks: [
         { name: 'Facebook', href: 'https://www.facebook.com/profile.php?id=61594009876448', icon: 'fa-brands fa-facebook-f' },
-        { name: 'Instagram', href: 'https://www.instagram.com/forgelock', icon: 'fa-brands fa-instagram' },
+        { name: 'Instagram', href: 'https://www.instagram.com/forgelook/', icon: 'fa-brands fa-instagram' },
         { name: 'X', href: 'https://x.com/forgelock', icon: 'fa-brands fa-x-twitter' },
-        { name: 'TikTok', href: 'https://www.tiktok.com/@forgelock', icon: 'fa-brands fa-tiktok' }
+        { name: 'TikTok', href: 'https://www.tiktok.com/@forge.lock', icon: 'fa-brands fa-tiktok' }
     ],
     featuredSolutions: [
         { id: 'whatsapp', title: 'Automatiza tu WhatsApp Business', tag: 'Solución Estelar', icon: 'fa-brands fa-whatsapp', tone: 'emerald', description: 'Convierte WhatsApp en una herramienta para atender clientes, registrar información y automatizar procesos sin perder el toque humano.', highlights: ['Atención 24/7 automática', 'Registro automático de clientes', 'Filtros y derivación de solicitudes'], whatsappText: 'Hola, estoy interesado en automatizar WhatsApp Business.' },
