@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://forgelook19.github.io/forge_look/sitemap.xml
