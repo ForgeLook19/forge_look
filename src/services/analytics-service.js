@@ -27,7 +27,7 @@ const trackSocialClick = (link, href) => {
 
 const trackServiceSelection = (button) => {
     const serviceIndex = Number(button.dataset.banner);
-    const service = Number.isInteger(serviceIndex) ? window.__FORGELOCK_APP_SERVICES?.[serviceIndex] : null;
+    const service = Number.isInteger(serviceIndex) ? window.__FORGELOOK_APP_SERVICES?.[serviceIndex] : null;
     sendEvent('select_service', { service_name: service || linkText(button) });
 };
 
