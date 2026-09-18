@@ -1,10 +1,10 @@
-# ForgeLock
+# ForgeLook
 
 Landing estática de servicios tecnológicos para emprendedores, negocios y pequeñas empresas.
 
 ## Descripción
 
-ForgeLock presenta soluciones de automatización, desarrollo web, sistemas y digitalización de procesos. La app mantiene una arquitectura MVC simple en JavaScript vanilla y se despliega como sitio estático.
+ForgeLook presenta soluciones de automatización, desarrollo web, sistemas y digitalización de procesos. La app mantiene una arquitectura MVC simple en JavaScript vanilla y se despliega como sitio estático.
 
 ## Tecnologías
 
@@ -45,7 +45,7 @@ npm run dev
 Abre la aplicación en:
 
 ```text
-http://localhost:3001/forge_look_landing_page.html
+http://localhost:3001/
 ```
 
 No abras la app directamente con `file:///` porque los módulos ES requieren un servidor HTTP.
