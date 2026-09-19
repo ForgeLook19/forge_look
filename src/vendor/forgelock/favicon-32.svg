@@ -1,6 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 64 64" role="img" aria-label="ForgeLook">
-  <rect width="64" height="64" rx="14" fill="#0f172a"/>
-  <path fill="#22c55e" d="M16 22h32v8H16zm0 12h32v8H16z"/>
-  <path fill="#22c55e" d="M22 16h8v32h-8zm12 0h8v32h-8z" opacity=".45"/>
-  <path fill="#fff" d="M25 31h14a4 4 0 0 1 4 4v11H21V35a4 4 0 0 1 4-4m3-3a4 4 0 0 1 8 0v3h-3v-3a1 1 0 0 0-2 0v3h-3z"/>
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN"
+ "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+<svg version="1.0" xmlns="http://www.w3.org/2000/svg"
+ width="32.000000pt" height="32.000000pt" viewBox="0 0 32.000000 32.000000"
+ preserveAspectRatio="xMidYMid meet">
+
+<g transform="translate(0.000000,32.000000) scale(0.100000,-0.100000)"
+fill="#000000" stroke="none">
+<path d="M0 160 l0 -160 160 0 160 0 0 160 0 160 -160 0 -160 0 0 -160z m204
+118 c9 -12 16 -31 16 -41 0 -9 7 -20 15 -23 10 -4 15 -18 14 -43 l-2 -36 -6
+35 c-5 29 -11 36 -36 41 -16 4 -22 7 -12 8 14 1 17 6 11 24 -10 33 -24 47 -48
+47 -28 0 -46 -18 -46 -47 0 -18 6 -23 28 -25 16 0 10 -3 -18 -7 l-45 -6 0 -75
+0 -75 70 -6 70 -5 -66 -2 c-39 -1 -70 3 -77 10 -19 19 -16 154 3 162 8 3 15
+14 15 23 0 35 29 63 65 63 24 0 39 -7 49 -22z m39 -154 c3 -4 -7 -20 -24 -37
+-38 -38 -61 -23 -25 16 25 27 37 32 49 21z m27 -81 c0 -19 -14 -16 -34 6 -24
+27 -11 48 15 25 10 -9 19 -23 19 -31z"/>
+</g>
 </svg>
