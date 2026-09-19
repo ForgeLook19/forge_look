@@ -15,7 +15,6 @@ if (existsSync(output)) {
 await mkdir(output, { recursive: true });
 
 await cp(join(root, 'index.html'), join(output, 'index.html'));
-await cp(join(root, 'forge_look_landing_page.html'), join(output, 'forge_look_landing_page.html'));
 await cp(join(root, 'robots.txt'), join(output, 'robots.txt'));
 await cp(join(root, 'sitemap.xml'), join(output, 'sitemap.xml'));
 
