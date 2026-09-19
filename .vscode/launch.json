@@ -4,6 +4,8 @@
     // Para más información, visite: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+        
+
         {
             "type": "editor-browser",
             "request": "launch",
@@ -11,6 +13,11 @@
             "preLaunchTask": "Iniciar servidor Forge Look",
             "url": "http://localhost:3001/forge_look_landing_page.html",
             "webRoot": "${workspaceFolder}/forge_look_landing_page"
+        }
+    ]
+}
+            "url": "http://localhost:3001",
+            "webRoot": "${workspaceFolder}"
         }
     ]
 }
