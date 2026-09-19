@@ -14,7 +14,6 @@ if (Test-Path -LiteralPath $output) {
 
 New-Item -ItemType Directory -Path $output | Out-Null
 Copy-Item -LiteralPath (Join-Path $root 'index.html') -Destination $output
-Copy-Item -LiteralPath (Join-Path $root 'forge_look_landing_page.html') -Destination $output
 Copy-Item -LiteralPath (Join-Path $root 'robots.txt') -Destination $output
 Copy-Item -LiteralPath (Join-Path $root 'sitemap.xml') -Destination $output
 
